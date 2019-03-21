@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 import static java.lang.Math.round;
 
-class UserProfile {
+class Session {
     //user profile knows its id and pin, as well as having three linked accounts
-    String userID;
-    int pin;
-    private Account current, joint, saving;
+    private User user;
     //handles the transfer method
     private void transferFunds (Account src, Account dest) {
 
@@ -43,11 +41,11 @@ class UserProfile {
         //switch on user input, to see which account they selected
         switch (input) {
             case "current":
-                return this.current;
+                return user.current;
             case "saving":
-                return this.saving;
+                return user.saving;
             case "joint":
-                return this.joint;
+                return user.joint;
             default:
                 //invalid selection returns no account
                 System.out.println("Invalid account. Returning to options.");
@@ -63,7 +61,7 @@ class UserProfile {
         //loop until log out is chosen
         while (true) {
             //set of messages defining possible inputs
-            System.out.println("Welcome, " + userID + ". What would you like to do today?\n"
+            System.out.println("Welcome, " + user.userID + ". What would you like to do today?\n"
                     + "(options are 'transfer', 'withdraw', 'deposit', 'balance', and 'log out')");
             input = myScanner.nextLine().toLowerCase();
             //log out is a special case that breaks the loop before the switch body is reached
@@ -128,7 +126,7 @@ class UserProfile {
                     Account transferDestAccount = this.selectAccount();
                     if (transferDestAccount == null) { break; }
                     transferFunds(transferSrcAccount, transferDestAccount);
-                    //calls tranferFunds method with chosen accounts
+                    //calls transferFunds method with chosen accounts
                     break;
                 default:
                     //let user know if their input failed
@@ -141,12 +139,8 @@ class UserProfile {
         }
     }
     //requires id and pin to initialise, and provides some starting funds to own accounts
-    UserProfile(String inputID, int inputPin) {
-        this.userID = inputID;
-        this.pin = inputPin;
-        this.current = new Account (100.0);
-        this.joint = new Account (100.0);
-        this.saving = new Account (100.0);
+    Session(User userIn) {
+        this.user = userIn;
     }
 
 }

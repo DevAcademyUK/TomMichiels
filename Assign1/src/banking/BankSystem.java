@@ -6,19 +6,20 @@ import java.util.Scanner;
 public class BankSystem {
 
     //our test user array. hardcoded below
-    private static UserProfile[] users = new UserProfile[3];
+    private static User[] users;
 
     //method to validate provided login info
-    private void login (String userID, int pin) {
+    private void login (String userID, String pin) {
 
-        for (UserProfile user : users) {
+        for (User user : users) {
             if (userID.equals(user.userID)) {
 
                 //only check PIN provided if user account exists
 
-                if (pin == user.pin) {
+                if (pin.equals(user.pin)) {
                     //only let user in if they get the correct PIN
-                    user.getInput();
+                    Session mySession = new Session(user);
+                    mySession.getInput();
                     break;
 
                 } else {
@@ -64,13 +65,13 @@ public class BankSystem {
             } else if (input.equals("login")) {
                 //if user enters login command, get inputs then feed them into validation method above
                 String userID;
-                int pin;
+                String pin;
 
                 System.out.println("Please enter your userID:");
                 userID = myScanner.nextLine();
 
                 System.out.println("Please enter your PIN:");
-                pin = Integer.parseInt(myScanner.nextLine());
+                pin = myScanner.nextLine();
 
                 this.login(userID, pin);
 
@@ -86,9 +87,10 @@ public class BankSystem {
 
     //account ids of test users
     private BankSystem () {
-        users[0] = new UserProfile("TestUser", 1234);
-        users[1] = new UserProfile("username", 1111);
-        users[2] = new UserProfile("TM8195", 9999);
+        users = new User[3];
+        users[0] = new User("TestUser", "1234");
+        users[1] = new User("username", "1111");
+        users[2] = new User("TM8195", "9999");
     }
 
 }
