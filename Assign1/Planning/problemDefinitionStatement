@@ -1,6 +1,6 @@
 The problem to be tackled is to create a simple banking program.
-This should support multiple users, with access blocked via a PIN.
+This should support access blocked via a PIN.
 Each user should have access to multiple accounts (current, saving, joint).
 Accounts should be able to store and display their balance.
 Accounts should facilitate depositing and withdrawal to and from their balance.
-A user should be able to transfer funds directly from one account to another.
+The user should be able to transfer funds directly from one account to another.
