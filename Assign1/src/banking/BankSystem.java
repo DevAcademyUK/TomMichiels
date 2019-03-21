@@ -5,11 +5,13 @@ import java.util.Scanner;
 //initial class. Not strictly necessary, but makes scaling to multiple users easier if implemented later
 public class BankSystem {
 
-    //our test user, hard coded for now
-    private UserProfile user = new UserProfile("TestUser", 1234);
+    //our test user array. hardcoded below
+    private static UserProfile[] users = new UserProfile[3];
+
     //method to validate provided login info
     private void login (String userID, int pin) {
 
+        for (UserProfile user : users) {
             if (userID.equals(user.userID)) {
 
                 //only check PIN provided if user account exists
@@ -17,20 +19,33 @@ public class BankSystem {
                 if (pin == user.pin) {
                     //only let user in if they get the correct PIN
                     user.getInput();
+                    break;
 
                 } else {
                     //let user know if their input failed
                     System.out.println("Invalid PIN.");
-
+                    break;
                 }
 
-            } else {
-                //let user know if their input failed
-                System.out.println("Unrecognised user.");
+                //if reached end of loop and not matched userID
 
             }
 
+            if (user.equals(users[2])) {
+                System.out.println("User not found.");
+            }
+        }
+
     }
+
+    //start here
+    public static void main(String[] args) {
+        //start here, then jump right in to getInput
+        BankSystem myBank = new BankSystem();
+        myBank.getInput();
+
+    }
+
     //looping method that gets input from user and acts on it
     private void getInput() {
 
@@ -68,12 +83,12 @@ public class BankSystem {
         }
 
     }
-    //start here
-    public static void main(String[] args) {
-        //start here, then jump right in to getInput
-        BankSystem myBank = new BankSystem();
-        myBank.getInput();
 
+    //account ids of test users
+    private BankSystem () {
+        users[0] = new UserProfile("TestUser", 1234);
+        users[1] = new UserProfile("username", 1111);
+        users[2] = new UserProfile("TM8195", 9999);
     }
 
 }
