@@ -38,8 +38,6 @@ class UserProfile {
 
         Scanner myScanner = new Scanner (System.in);
         String input;
-
-        System.out.println();
         System.out.println("(options are 'current', 'saving', or 'joint')");
         input = myScanner.nextLine().toLowerCase();
         //switch on user input, to see which account they selected
@@ -65,8 +63,8 @@ class UserProfile {
         //loop until log out is chosen
         while (true) {
             //set of messages defining possible inputs
-            System.out.println("Welcome, " + userID + ". What would you like to do today?");
-            System.out.println("(options are 'transfer', 'withdraw', 'deposit', 'balance', and 'log out')");
+            System.out.println("Welcome, " + userID + ". What would you like to do today?\n"
+                    + "(options are 'transfer', 'withdraw', 'deposit', 'balance', and 'log out')");
             input = myScanner.nextLine().toLowerCase();
             //log out is a special case that breaks the loop before the switch body is reached
             if (input.equals("log out")) { break; }
