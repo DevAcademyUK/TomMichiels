@@ -15,6 +15,72 @@ public class Parking {
         return newInput;
     }
 
+    private String getDay(String day) {
+        boolean init = (day.equals(""));
+
+        if (init) {
+            System.out.println("What day is it?");
+            day = dataEntry("day");
+        }
+
+        switch (day) {
+            case "monday":
+            case "tuesday":
+            case "wednesday":
+            case "thursday":
+            case "friday":
+            case "saturday":
+            case "sunday":
+                break;
+            default:
+                System.out.println(day + " is not a recognised day.\n" +
+                        "Options are 'Monday', 'Tuesday', 'Wednesday', 'Thursday', " +
+                        "'Friday', 'Saturday', or 'Sunday'.");
+                day = dataEntry("new day").toLowerCase();
+                day = getDay(day);
+        }
+
+        return day;
+
+    }
+
+    private String getPosition(String position) {
+        boolean init = (position.equals(""));
+
+        if (init) {
+            System.out.println("What position do you hold within the college?\n" +
+                    "(Staff/Student/Visitor)");
+            position = dataEntry("position");
+        }
+
+        switch (position) {
+            case "staff":
+            case "student":
+            case "visitor":
+                break;
+            default:
+                System.out.println(position + " is not a recognised position.\n" +
+                        "Options are 'Staff', 'Student', or 'Visitor'.");
+                position = dataEntry("new position").toLowerCase();
+                position = getPosition(position);
+        }
+
+        return position;
+
+    }
+
+    private int getDuration() {
+        int duration;
+        String input;
+
+        System.out.println("How long will you be staying?");
+        input = dataEntry("time (in hours)");
+        //TODO make this check if it will parse, first
+        duration = Integer.parseInt(input);
+        return duration;
+    }
+
+
     private int calculateFees(String day, int duration, String position) {
 
         int multiplier = 0, hourlyrate = 0;
@@ -53,71 +119,24 @@ public class Parking {
 
     }
 
-    private void getInput(String dayIn, int durationIn, String positionIn) {
-        String input, day = dayIn, position = positionIn;
-        int duration = durationIn, cost;
-        boolean if1, if2, if3;
+    private void getInput() {
+        String day, position;
+        int duration, cost;
 
-        if1 = (day.equals(""));
-        if (if1) {
-            System.out.println("What day is it?");
-            day = dataEntry("day");
-        }
+        day = getDay("");
 
-        switch (day) {
-            case "monday":
-            case "tuesday":
-            case "wednesday":
-            case "thursday":
-            case "friday":
-            case "saturday":
-            case "sunday":
-                break;
-            default:
-                System.out.println(day + " is not a recognised day.\n" +
-                        "Options are 'Monday', 'Tuesday', 'Wednesday', 'Thursday', " +
-                        "'Friday', 'Saturday', or 'Sunday'.");
-                day = dataEntry("new day").toLowerCase();
-                getInput(day, duration, position);
-        }
+        duration = getDuration();
 
-        if2 = (duration == 0);
-        if (if2) {
-            System.out.println("How long will you be staying?");
-            input = dataEntry("time (in hours)");
-            //TODO make this check if it will parse, first
-            duration = Integer.parseInt(input);
-        }
+        position = getPosition("");
 
-        if3 = (position.equals(""));
-        if (if3) {
-            System.out.println("What position do you hold within the college?\n" +
-                    "(Staff/Student/Visitor)");
-            position = dataEntry("position");
-        }
-
-        switch (position) {
-            case "staff":
-            case "student":
-            case "visitor":
-                break;
-            default:
-                System.out.println(position + " is not a recognised position.\n" +
-                        "Options are 'Staff', 'Student', or 'Visitor'.");
-                position = dataEntry("new position").toLowerCase();
-                getInput(day, duration, position);
-        }
-
-        if (!(if1 || if2 || if3)) {
-            cost = calculateFees(day, duration, position);
-            System.out.println("Thanks for parking at Gateshead College, please pay: " + cost);
-        }
+        cost = calculateFees(day, duration, position);
+        System.out.println("Thanks for parking at Gateshead College, please pay: " + cost);
 
     }
 
     public static void main(String[] args) {
         Parking ghParking = new Parking();
-        ghParking.getInput("", 0, "");
+        ghParking.getInput();
     }
 
 }
