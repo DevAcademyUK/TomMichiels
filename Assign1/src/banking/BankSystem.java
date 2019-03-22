@@ -1,5 +1,6 @@
 package banking;
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 //initial class. Not strictly necessary, but makes scaling to multiple users easier if implemented later
@@ -12,6 +13,9 @@ public class BankSystem {
     private void login (String userID, String pin) {
 
         for (User user : users) {
+
+            int usersSize = Array.getLength(users);
+
             if (userID.equals(user.userID)) {
 
                 //only check PIN provided if user account exists
@@ -32,18 +36,10 @@ public class BankSystem {
 
             }
 
-            if (user.equals(users[2])) {
+            if (user.equals(users[usersSize - 1])) {
                 System.out.println("User not found.");
             }
         }
-
-    }
-
-    //start here
-    public static void main(String[] args) {
-        //start here, then jump right in to getInput
-        BankSystem myBank = new BankSystem();
-        myBank.getInput();
 
     }
 
@@ -93,4 +89,11 @@ public class BankSystem {
         users[2] = new User("TM8195", "9999");
     }
 
+    //start here
+    public static void main(String[] args) {
+        //start here, then jump right in to getInput
+        BankSystem myBank = new BankSystem();
+        myBank.getInput();
+
+    }
 }
