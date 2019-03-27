@@ -6,7 +6,7 @@ class Account {
     //account object holds on to the balance value, but prevents outside access
     private double balance;
     //deposit given double
-    public void deposit(double in) {
+    void deposit(double in) {
         this.balance = this.balance + in;
     }
     //withdraws given amount
