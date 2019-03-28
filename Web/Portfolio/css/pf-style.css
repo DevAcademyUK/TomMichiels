@@ -1,0 +1,95 @@
+body {font-family: "Raleway", sans-serif;}
+
+a:link {} /*unvisited link*/
+
+a:visited {} /*visited link*/
+
+a:hover {} /*hovered link*/
+
+a:active {} /*when clicked*/
+
+h1,h2,h3,h4,h5,h6 {font-family: "Ubuntu Mono", Monospace;}
+
+.padded-top {padding-top: 25px;}
+
+.bg1{
+	background-color: #f2f2f2;
+	padding-top: 25px;
+	padding-bottom: 50px;
+}
+
+.bg2 {
+	background-color: #d3d3d3;
+	padding-top: 25px;
+	padding-bottom: 50px;
+}
+
+.no-margin {
+	padding: 0;
+	margin: 0;
+}
+
+div.c-wrapper {
+	width: 80%;
+	margin:auto;
+}
+
+.carousel-indicators {
+	top:20px;
+}
+
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #183945;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+	width: 100%;
+	margin: auto;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+	background-color: #183945;
+	border-radius: 50%;
+	background-size: 80%;
+}
+
+.carousel-control-prev, .carousel-control-next {
+	align-items: flex-start;
+	margin-top: 20px;
+}
+
+.jumbotron {background-color: #116973;
+			color: #f2f2f2;
+			margin-bottom: 0;
+			border-radius: 0 !important;} 
+
+.navbar {
+  margin-bottom: 0;
+  background-color: #116973;
+  z-index: 9999;
+  border: 0;
+  /*font-size: 12px;
+  line-height: 1.42857143;*/
+  letter-spacing: 4px;
+  border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+  color: #f2f2f2 !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: #116973 !important;
+  background-color: #f2f2f2 !important;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: #f2f2f2 !important;
+}
