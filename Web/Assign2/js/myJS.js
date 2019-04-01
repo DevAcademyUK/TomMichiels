@@ -78,8 +78,8 @@ function newDeadline(days, hours, minutes, seconds) {
 
 var clocks = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'];
 
-var deadlines = [newDeadline(256, 0, 0, 0), newDeadline(2, 0, 0, 0), newDeadline(1, 0, 0, 0),
-				newDeadline(0, 0, 30, 0), newDeadline(0, 0, 5, 0), newDeadline(0, 0, 0, 30)];
+var deadlines = [newDeadline(256, 0, 0, 0), newDeadline(1, 0, 0, 30), newDeadline(1, 0, 0, 0),
+				newDeadline(0, 1, 0, 30), newDeadline(0, 0, 1, 30), newDeadline(0, 0, 0, 30)];
 
 
 for (var i = 0; i < 6; i++) {
