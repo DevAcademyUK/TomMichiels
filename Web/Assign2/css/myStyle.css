@@ -27,10 +27,6 @@ h1,h2,h3,h4,h5,h6 {font-family: "Alegraya", Serif;}
 	text-align: center;	
 }
 
-input {
-	text-align: center;
-}
-
 .rounded-corners {
 	border-radius: 5%;
 }
