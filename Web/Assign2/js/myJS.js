@@ -24,11 +24,36 @@ function initializeClock(id, endtime) {
 
   function updateClock() {
     var t = getTimeRemaining(endtime);
+    var dayLeft, hourLeft, minLeft, secLeft;
+    
+    dayLeft = t.days;
+    hourLeft = ('0' + t.hours).slice(-2);
+    minLeft = ('0' + t.minutes).slice(-2);
+    secLeft = ('0' + t.seconds).slice(-2);
 
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    if (dayLeft == "0") {
+    	daysSpan.innerHTML = "";
+    } else {
+    	daysSpan.innerHTML = dayLeft + "d:";
+    }
+    
+    if (hourLeft == "00" && dayLeft == "0") {
+    	hoursSpan.innerHTML = "";
+    } else {
+    	hoursSpan.innerHTML = hourLeft + "h:";
+    }
+
+    if (minLeft == "00" && hourLeft == "00" && dayLeft == "0") {
+    	minutesSpan.innerHTML = "";
+    } else {
+    	minutesSpan.innerHTML = minLeft + "m:";
+    }
+
+    if (secLeft == "00" && minLeft == "00" && hourLeft == "00" & dayLeft == "0") {
+    	clock.innerHTML = "<strong>Deal Over<strong>";
+    	clock.classList.add("deal-over");
+    }
+    secondsSpan.innerHTML = secLeft + "s";
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
@@ -53,10 +78,23 @@ function newDeadline(days, hours, minutes, seconds) {
 
 var clocks = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'];
 
-var deadlines = [newDeadline(3, 0, 0, 0), newDeadline(2, 0, 0, 0), newDeadline(1, 0, 0, 0),
-				newDeadline(0, 1, 0, 0), newDeadline(0, 0, 30, 0), newDeadline(0, 0, 5, 0)];
+var deadlines = [newDeadline(256, 0, 0, 0), newDeadline(2, 0, 0, 0), newDeadline(1, 0, 0, 0),
+				newDeadline(0, 0, 30, 0), newDeadline(0, 0, 5, 0), newDeadline(0, 0, 0, 30)];
 
 
 for (var i = 0; i < 6; i++) {
 	initializeClock(clocks[i], deadlines[i]);
 }
+
+$(".myBox").click(function() {
+  window.location = $(this).find("a").attr("href"); 
+  return false;
+});
+
+ $( ".card" ).hover(
+  function() {
+    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+  }, function() {
+    $(this).removeClass('shadow-lg');
+  }
+);

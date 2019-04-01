@@ -15,6 +15,7 @@ h1,h2,h3,h4,h5,h6 {font-family: "Alegraya", Serif;}
 	padding: 25px;
 }
 
+
 .bg2 {
 	background-color: #DADBD6;
 }
@@ -25,6 +26,30 @@ h1,h2,h3,h4,h5,h6 {font-family: "Alegraya", Serif;}
 
 .center {
 	text-align: center;	
+}
+
+.overlay-text {
+	background-color: rgba(24,57,69,0.6);
+	color: #f2f2f2;
+	display:inline-block;
+	border-radius: 5%;
+	position: absolute;
+}
+
+.deal-over {
+	color: #d82b03;
+	background-color: #116973;
+	font-size: 150%;
+}
+
+.top-left {
+	top: 5%;
+	left: 5%;
+}
+
+.bottom-right {
+	bottom: 5%;
+	right: 5%;
 }
 
 .rounded-corners {
