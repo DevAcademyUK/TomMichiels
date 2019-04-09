@@ -18,7 +18,7 @@ class Account {
     //returns a rounded to 2dp version of the balance (it is held at more decimal places, for calculation purposes)
     double checkBalance() {
 
-        return ((double)round(this.balance * 100)/ 100);
+        return ((double) round(this.balance * 100)/ 100);
 
     }
     //requires initial balance to be declared
