@@ -238,8 +238,6 @@ public class Library {
 
     private void populate() {
 
-        Object[] newItems;
-
         addClassics();
         addMembers();
         addLoans();
