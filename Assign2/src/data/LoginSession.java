@@ -1,16 +1,12 @@
 package data;
 
-import java.util.ArrayList;
-
 class LoginSession extends UserSession {
-
-    private ArrayList<UserLogin> loginDetails;
 
     //handles the parsing and acting on input data
     @Override
     boolean menuActions(String[] input) {
 
-        for (UserLogin login: loginDetails) {
+        for (UserLogin login: db.getLogins()) {
 
             if (login.checkDetails(input)) {
 
@@ -52,7 +48,9 @@ class LoginSession extends UserSession {
 
         String[] input = new String[2];
 
-        //TODO allow new users to choose login details if they have been added to the employee list
+        //TODO allow new users to choose login details if they have been added to the employee list -
+        // perhaps an initial menu that asks user to choose between logging in with existing details or adding new ones
+        // (and, if new ones, asks for an employee id and checks if that already has associated details)
 
         System.out.println();
         System.out.println("----------");
@@ -66,8 +64,7 @@ class LoginSession extends UserSession {
 
     }
 
-    LoginSession(ArrayList<UserLogin> loginDetails, Database db) {
-        this.loginDetails = loginDetails;
+    LoginSession(Database db) {
         this.db = db;
     }
 

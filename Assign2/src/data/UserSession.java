@@ -107,8 +107,7 @@ class UserSession extends Session{
         System.out.println("What part of these corporate details would you like to edit?");
         System.out.println("1 - Position: '" + details[11] + "'");
         System.out.println("2 - Start Date: '" + details[12] + "'");
-        System.out.println("3 - Internal ID: '" + details[10] + "'");
-        System.out.println("4 - Exit this menu");
+        System.out.println("3 - Exit this menu");
 
         String input = myScanner.nextLine();
         boolean loopMenu = true;
@@ -127,22 +126,6 @@ class UserSession extends Session{
                 employee.updateField(12, input);
                 break;
             case "3":
-
-                if (db.getEmployeeById(userId).equals(employee)) {
-
-                    System.out.println("Cannot change own user ID, please do so via another HR account.");
-
-                } else {
-
-                    System.out.println("Enter new internal ID number: ");
-                    input = myScanner.nextLine();
-                    employee.updateField(10, input);
-
-                }
-
-                break;
-
-            case "4":
                 loopMenu = false;
                 break;
             default:

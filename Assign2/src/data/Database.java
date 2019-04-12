@@ -1,7 +1,6 @@
 package data;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 //here is where the collection of employees is stored and acted upon
 
@@ -24,7 +23,9 @@ class Database {
     12 - startdate
      */
 
+    //TODO implement functions to allow addition and updating of loginDetails
     private ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<UserLogin> loginDetails;
 
     //keeps track of id number, so each new user can be given a new, unique id
     private int idCount = 1;
@@ -182,6 +183,10 @@ class Database {
 
     }
 
+    ArrayList<UserLogin> getLogins() {
+        return loginDetails;
+    }
+
     //takes in details for a new employee object, assigns it a unique id, and adds it to the list
     void addNewEmployee(String[] newDetails) {
 
@@ -190,6 +195,16 @@ class Database {
 
         employees.add(new Employee(newDetails));
 
+    }
+
+    //list of initial login details; one for an employee, one for a hr position, and one for a hr manager
+    private static ArrayList<UserLogin> makeLogins() {
+        ArrayList<UserLogin> logins = new ArrayList<>();
+        logins.add(new UserLogin("un1", "pw1", "employee", "1"));
+        logins.add(new UserLogin("un2", "pw2", "hr", "2"));
+        logins.add(new UserLogin("un3", "pw3", "manager", "3"));
+
+        return logins;
     }
 
     //contains the initial employee objects
@@ -206,6 +221,7 @@ class Database {
 
     Database() {
         populate();
+        loginDetails = makeLogins();
     }
 
 }
