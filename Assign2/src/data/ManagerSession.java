@@ -146,9 +146,15 @@ class ManagerSession extends UserSession {
                 viewMenu();
                 break;
             case "2":
-                addNewUser();
+                Employee employeeToEdit = selectEmployee();
+                if (employeeToEdit != null) {
+                    editMenu(employeeToEdit);
+                }
                 break;
             case "3":
+                addNewUser();
+                break;
+            case "4":
                 loopMenu = false;
                 break;
             default:
@@ -164,9 +170,10 @@ class ManagerSession extends UserSession {
         System.out.println();
         System.out.println("----------");
         System.out.println("What would you like to do today?");
-        System.out.println("1 - View all employee details");
-        System.out.println("2 - Add new employee");
-        System.out.println("3 - Log out");
+        System.out.println("1 - View list of all employee details");
+        System.out.println("2 - Edit employee details");
+        System.out.println("3 - Add new employee");
+        System.out.println("4 - Log out");
 
         return new String[] {myScanner.nextLine()};
     }
