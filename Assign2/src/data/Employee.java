@@ -2,6 +2,8 @@ package data;
 
 import java.util.Comparator;
 
+//the data object that holds all fields for employee data
+
 class Employee implements Comparable<Employee> {
 
     /*For convenience's sake, I'm using an array of strings when passing the employee details around.
@@ -25,6 +27,8 @@ class Employee implements Comparable<Employee> {
             address1, towncity, county, postcode,
             contactno, email, id, position, startdate;
 
+    //defines a comparator for each field
+
     static Comparator<Employee> employeeTitleComparator;
     static Comparator<Employee> employeeForenameComparator;
     static Comparator<Employee> employeeSurnameComparator;
@@ -39,6 +43,7 @@ class Employee implements Comparable<Employee> {
     static Comparator<Employee> employeePositionComparator;
     static Comparator<Employee> employeeStartdateComparator;
 
+    //assigns each comparator to its designated field
     static {
 
         employeeTitleComparator = Comparator.comparing(e -> e.title);
@@ -54,8 +59,10 @@ class Employee implements Comparable<Employee> {
         employeeIdComparator = Comparator.comparing(e -> e.id);
         employeePositionComparator = Comparator.comparing(e -> e.position);
         employeeStartdateComparator = Comparator.comparing(e -> e.startdate);
+
     }
 
+    //provides a concatenated string of all data if asked, otherwise return just the field requested
     public String stringifySelectedDetails(int option) {
 
         if (option == 13) {
@@ -77,6 +84,7 @@ class Employee implements Comparable<Employee> {
 
     }
 
+    //takes in a string and an int indicating which field the string should replace
     void updateField(int index, String newData) {
 
         String[] newDataSet = getDetails();
@@ -85,13 +93,15 @@ class Employee implements Comparable<Employee> {
 
     }
 
+    //returns an array containing each field
     String[] getDetails() {
         return new String[]{title, forename, surname, dob,
             address1, towncity, county, postcode, contactno,
             email, id, position, startdate};
     }
 
-    void assignValues (String[] args) {
+    //assigns all fields values from the provided string array
+    private void assignValues (String[] args) {
         title = args[0];
         forename = args[1];
         surname = args[2];
@@ -107,6 +117,7 @@ class Employee implements Comparable<Employee> {
         startdate = args[12];
     }
 
+    //default value for sorting is the id number
     @Override
     public int compareTo(Employee e) {
 
@@ -114,6 +125,7 @@ class Employee implements Comparable<Employee> {
 
     }
 
+    //constructor takes an array, because it's less messy than taking 13 different strings
     Employee(String[] args) {
         assignValues(args);
     }

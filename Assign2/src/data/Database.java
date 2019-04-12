@@ -3,6 +3,8 @@ package data;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+//here is where the collection of employees is stored and acted upon
+
 class Database {
 
     /*For convenience's sake, I'm using an array of strings when passing the employee details around.
@@ -23,8 +25,11 @@ class Database {
      */
 
     private ArrayList<Employee> employees = new ArrayList<>();
+
+    //keeps track of id number, so each new user can be given a new, unique id
     private int idCount = 1;
 
+    //same as ascendSort, but using reversed sort
     private void descendSort(int sortOption) {
 
         switch (sortOption) {
@@ -73,6 +78,7 @@ class Database {
 
     }
 
+    //takes an index identifying which field to sort by, then sorts by the associated comparator
     private void ascendSort(int sortOption) {
 
         switch (sortOption) {
@@ -121,6 +127,7 @@ class Database {
 
     }
 
+    //prints out employee details (with field/s printed decided by the viewOption passed)
     private void displayEmployees (int viewOption) {
 
         System.out.println();
@@ -134,6 +141,7 @@ class Database {
         System.out.println("------------");
     }
 
+    //method that handles sorting and then printing employee details based on options passed
     void sortEmployees(int sortOption, String sortOrder, int viewOption) {
         if (sortOrder.equals("descending")) {
             descendSort(sortOption);
@@ -144,6 +152,7 @@ class Database {
         displayEmployees(viewOption);
     }
 
+    //returns the employee object which has the given id
     Employee getEmployeeById (String id) {
 
         for (Employee employee: employees) {
@@ -158,6 +167,7 @@ class Database {
 
     }
 
+    //returns the type of the employee object which has the given id
     String getEmployeeTypeById (String id) {
 
         for (Employee employee: employees) {
@@ -172,6 +182,7 @@ class Database {
 
     }
 
+    //takes in details for a new employee object, assigns it a unique id, and adds it to the list
     void addNewEmployee(String[] newDetails) {
 
         newDetails[10] = Integer.toString(idCount);
@@ -181,21 +192,15 @@ class Database {
 
     }
 
+    //contains the initial employee objects
     private void populate() {
 
-        String[] emp1 = new String[]{"Mr", "John", "Smith", "2000/01/01", "1 Example Street", "City", "County",
-                "AB1234", "01234567890", "jsmith@email.com", Integer.toString(idCount), "Employee", "2020/01/01"};
-        idCount++;
-        String[] hr1 = new String[]{"Mrs", "Jane", "Doe", "2000/01/05", "1 Example Street", "City", "County",
-                "AB1234", "01234567890", "jdoe@email.com", Integer.toString(idCount), "HR", "2020/01/01"};
-        idCount++;
-        String[] man1 = new String[]{"Ms", "Jo", "Bloggs", "2000/01/03", "1 Example Street", "City", "County",
-                "AB1234", "01234567890", "jbloggs@email.com", Integer.toString(idCount), "Manager", "2020/01/01"};
-        idCount++;
-
-        employees.add(new Employee(emp1));
-        employees.add(new Employee(hr1));
-        employees.add(new Employee(man1));
+        addNewEmployee(new String[]{"Mr", "John", "Smith", "2000/01/01", "1 Example Street", "City", "County",
+                "AB1234", "01234567890", "jsmith@email.com", "", "Employee", "2020/01/01"});
+        addNewEmployee(new String[]{"Mrs", "Jane", "Doe", "2000/01/05", "1 Example Street", "City", "County",
+                "AB1234", "01234567890", "jdoe@email.com", "", "HR", "2020/01/01"});
+        addNewEmployee(new String[]{"Ms", "Jo", "Bloggs", "2000/01/03", "1 Example Street", "City", "County",
+                "AB1234", "01234567890", "jbloggs@email.com", "", "Manager", "2020/01/01"});
 
     }
 

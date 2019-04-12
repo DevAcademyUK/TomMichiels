@@ -1,5 +1,7 @@
 package data;
 
+//class contains methods used by multiple types of user sessions, to prevent repeated code
+
 class UserSession extends Session{
 
     /*For convenience's sake, I'm using an array of strings when passing the employee details around.
@@ -19,8 +21,10 @@ class UserSession extends Session{
     12 - startdate
      */
 
+    //every session except login session needs to know who is logged in
     String userId;
 
+    //asks for an id number and returns associated employee object, used by hr and manager
     Employee selectEmployee() {
         System.out.print("Enter ID number of employee to be accessed:");
         String id = myScanner.nextLine();
@@ -36,6 +40,7 @@ class UserSession extends Session{
 
     }
 
+    //handles the collection of information for a new user, used by both manager and hr
     void addNewUser() {
 
         if (db.getEmployeeTypeById(userId).equals("hr") || db.getEmployeeTypeById(userId).equals("manager")) {
@@ -91,6 +96,8 @@ class UserSession extends Session{
         }
     }
 
+    //these four similar menus are the nested menus for editing different categories of employee data,
+    //to help make navigating more manageable
     private void corporateMenu(Employee employee) {
 
         String[] details = employee.getDetails();
@@ -283,6 +290,7 @@ class UserSession extends Session{
 
     }
 
+    //handles the menu for accessing and editing different fields of passed employee object (used by all user sessions)
     void editMenu(Employee employee) {
 
         System.out.println();
@@ -325,36 +333,18 @@ class UserSession extends Session{
 
     }
 
-    void printFullDetails(String[] details) {
-
+    //the menu options for both hr and manager (though manager gets more detailed actions on view)
+    @Override
+    String[] menuOptions() {
         System.out.println();
         System.out.println("----------");
-        System.out.println("Personal Details: ");
-        System.out.println();
-        System.out.println("Title: " + details[0]);
-        System.out.println("Forename: " + details[1]);
-        System.out.println("Surname: " + details[2]);
-        System.out.println("Date of Birth: " + details[3]);
-        System.out.println();
-        System.out.println("Address:");
-        System.out.println();
-        System.out.println("First Line of Address: " + details[4]);
-        System.out.println("Town or City: " + details[5]);
-        System.out.println("County: " + details[6]);
-        System.out.println("Postcode: " + details[7]);
-        System.out.println();
-        System.out.println("Contact Details:");
-        System.out.println();
-        System.out.println("Telephone no.: " + details[8]);
-        System.out.println("Email Address: " + details[9]);
-        System.out.println();
-        System.out.println("Corporate Details:");
-        System.out.println();
-        System.out.println("Position: " + details[11]);
-        System.out.println("Start Date: " + details[12]);
-        System.out.println("Internal Employee ID: " + details[10]);
-        System.out.println();
+        System.out.println("What would you like to do today?");
+        System.out.println("1 - View employee details");
+        System.out.println("2 - Edit employee details");
+        System.out.println("3 - Add new employee");
+        System.out.println("4 - Log out");
 
+        return new String[] {myScanner.nextLine()};
     }
 
 }

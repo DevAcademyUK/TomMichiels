@@ -6,16 +6,13 @@ class LoginSession extends UserSession {
 
     private ArrayList<UserLogin> loginDetails;
 
+    //handles the parsing and acting on input data
     @Override
-    void menuActions(String[] input) { 
-
-        boolean successfulLogin = false;
+    boolean menuActions(String[] input) {
 
         for (UserLogin login: loginDetails) {
 
             if (login.checkDetails(input)) {
-
-                successfulLogin = true;
 
                 switch (login.getType()) {
                     case "employee":
@@ -32,18 +29,24 @@ class LoginSession extends UserSession {
                         break;
                 }
 
+                //escapes this method before user is told their login failed
+                //if they finish a session after successfully logging in
+                return true;
+
             }
 
         }
 
-        if (!successfulLogin) {
-            System.out.println("Login details not recognised, returning to menu.");
-        }
+        //if user reaches this point, their login failed, so let them know that
+        System.out.println("Login details not recognised, returning to menu.");
 
-        menu();
+
+        //no actual way for this menu to stop looping - this is the top level of the program
+        return true;
 
     }
 
+    //requests un and pw, and then passes those to menuActions
     @Override
     String[] menuOptions() {
 
